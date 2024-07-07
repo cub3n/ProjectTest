@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Employee Grid";
+}
+
+@section Styles {
+    <link href="https://kendo.cdn.telerik.com/themes/8.0.1/default/default-main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/task2.css" />
+}
+
+<div id="mississauga-count" class="alert alert-info" style="margin-top: 3rem" role="alert"></div>
+<div style="margin-top: 3rem" id="grid"></div>
+
+@section Scripts {
+    <script src="https://kendo.cdn.telerik.com/2024.2.514/js/kendo.all.min.js"></script>
+    <script src="~/js/task2.js"></script>
+    <script>
+        $(document).ready(function(){
+            initGrid("#grid", '@Url.Action("GetEmployees", "Home")');
+        })
+    </script>
+}

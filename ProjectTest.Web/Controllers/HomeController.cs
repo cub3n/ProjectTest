@@ -18,6 +18,19 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Kendo()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    [HttpPost]
+
+    public JsonResult GetEmployees()
+    {
+        return Json(Constants.Employees);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

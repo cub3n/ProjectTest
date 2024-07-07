@@ -6,15 +6,47 @@
     <title>@ViewData["Title"] - ProjectTest.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ProjectTest.Web.styles.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Project Test</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="btn @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "btn-primary" : "btn-secondary")" href="@Url.Action("Index", "Home")">Task 1</a>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="btn @(ViewContext.RouteData.Values["action"]?.ToString() == "Kendo" ? "btn-primary" : "btn-secondary")" href="@Url.Action("Kendo", "Home")">Task 2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero-section">
+        <div class="container">
+            <h1>Project Test by Alexis Labanino</h1>
+            <p class="lead">This project demonstrates responsive design with Flexbox and interactive data visualization with Kendo UI and ASP.NET MVC.</p>
+        </div>
+    </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <span>&copy; 2024 Project Test by Alexis Labanino. All rights reserved.</span>
+        </div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
