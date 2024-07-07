@@ -25,7 +25,6 @@ public class HomeController : Controller
 
     [HttpGet]
     [HttpPost]
-
     public JsonResult GetEmployees()
     {
         return Json(Constants.Employees);

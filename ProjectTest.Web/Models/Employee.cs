@@ -12,7 +12,7 @@ namespace ProjectTest.Web.Models
             Salary = salary;
             Country = country;
         }
-
+      
         public string FullName { get; set; } = string.Empty;
         public string EmployeeID { get; set; } = string.Empty;
         public decimal SIN { get; set; }
