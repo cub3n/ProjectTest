@@ -81,9 +81,9 @@
                     updateMississaugaCount(data);
 
                     items.each(function () {
-                        var dataItem = grid.dataItem(this);
-                        var avatarElem = $(this).find('.avatar');
-                        var initials = getInitials(dataItem.fullName);
+                        const dataItem = grid.dataItem(this);
+                        const avatarElem = $(this).find('.avatar');
+                        const initials = getInitials(dataItem.fullName);
                         avatarElem.kendoAvatar({
                             type: 'text',
                             text: initials
@@ -99,7 +99,7 @@
                         field: "sin",
                         title: "SIN",
                         template: function (dataItem) {
-                            var sin = dataItem.sin.toString();
+                            const sin = dataItem.sin.toString();
                             return sin.substr(0, 3) + "-" + sin.substr(3, 3) + "-" + sin.substr(6, 3);
                         }
                     },
@@ -107,7 +107,7 @@
                         field: "phoneNumber",
                         title: "Phone Number",
                         template: function (dataItem) {
-                            var phone = dataItem.phoneNumber.toString();
+                            const phone = dataItem.phoneNumber.toString();
                             return "(" + phone.substr(0, 3) + ") " + phone.substr(3, 3) + "-" + phone.substr(6, 4);
                         }
                     },
