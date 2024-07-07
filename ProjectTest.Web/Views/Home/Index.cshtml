@@ -1,8 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Task 1";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/task1.css" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Task 1</h1>
+<section>
+    <div class="parent">
+        <div class="child" id="child1" onclick="onBoxClicked(event)">1</div>
+        <div class="child" id="child2" onclick="onBoxClicked(event)">2</div>
+        <div class="child" id="child3" onclick="onBoxClicked(event)">3</div>
+        <div class="child" id="child4" onclick="onBoxClicked(event)">4</div>
+    </div>
+</section>
+
+<script src="~/js/task1.js"></script>
