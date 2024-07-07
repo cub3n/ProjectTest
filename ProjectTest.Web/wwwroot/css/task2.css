@@ -1,0 +1,20 @@
+.employee-info {
+    display: flex;
+    align-items: center;
+}
+
+.employee-details {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.employee-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.employee-id {
+    color: #888;
+    font-size: 0.7rem;
+}
