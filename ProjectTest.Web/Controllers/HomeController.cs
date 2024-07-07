@@ -24,9 +24,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public JsonResult GetEmployees()
-    {
-    [HttpPost] // Change to accept POST requests
+    
     public JsonResult GetEmployees()
     {
         var employees = new List<Employee>
