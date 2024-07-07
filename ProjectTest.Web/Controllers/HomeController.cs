@@ -23,10 +23,12 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public JsonResult GetEmployees()
+    {
     [HttpPost] // Change to accept POST requests
     public JsonResult GetEmployees()
     {
-#pragma warning disable IDE0090 // Use 'new(...)'
         var employees = new List<Employee>
             {
                 new Employee { FullName = "John Doe", EmployeeID = "E001", SIN = 123456789, PhoneNumber = 2222341234, City = "Mississauga", Salary = 50000.542m, Country = "Canada" },
