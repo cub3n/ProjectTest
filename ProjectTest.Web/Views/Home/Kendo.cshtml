@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Employee Grid";
+}
+
+@section Styles {
+    <!-- Include Kendo UI CSS -->
+    <link href="https://kendo.cdn.telerik.com/themes/8.0.1/default/default-main.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .employee-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .employee-details {
+            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .employee-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .employee-id {
+            color: #888;
+            font-size: 0.7rem;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2024.2.514/js/kendo.all.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            function getInitials(fullName) {
+                let names = fullName.split(' ');
+                let initials = names.map(name => name.charAt(0).toUpperCase()).join('');
+                return initials;
+            }
+
+            function updateMississaugaCount(data) {
+                let count = data.filter(emp => emp.city === "Mississauga").length;
+                $("#mississauga-count").text(count + " Employees from Mississauga");
+            }
+
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "@Url.Action("GetEmployees", "Home")",
+                            type: "POST",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+                                fullName: { type: "string" },
+                                employeeID: { type: "string" },
+                                sin: { type: "number" },
+                                phoneNumber: { type: "number" },
+                                city: { type: "string" },
+                                salary: { type: "number" },
+                                country: { type: "string" }
+                            }
+                        }
+                    },
+                    pageSize: 5
+                },
+                pageable: true,
+                dataBound: function (e) {
+                    let grid = e.sender;
+                    let items = e.sender.items();
+                    let data = grid.dataSource.data();
+
+                    updateMississaugaCount(data);
+
+                    items.each(function () {
+                        var dataItem = grid.dataItem(this);
+                        var avatarElem = $(this).find('.avatar');
+                        var initials = getInitials(dataItem.fullName);
+                        avatarElem.kendoAvatar({
+                            type: 'text',
+                            text: initials
+                        });
+                    });
+                },
+                columns: [
+                    {
+                        title: "Full Name",
+                        template: '<div class="employee-info"><div class="avatar"></div><div class="employee-details"><div class="employee-name">#: fullName #</div><div class="employee-id">#: employeeID #</div></div></div>',
+                    },
+                    {
+                        field: "sin",
+                        title: "SIN",
+                        template: function (dataItem) {
+                            var sin = dataItem.sin.toString();
+                            return sin.substr(0, 3) + "-" + sin.substr(3, 3) + "-" + sin.substr(6, 3);
+                        }
+                    },
+                    {
+                        field: "phoneNumber",
+                        title: "Phone Number",
+                        template: function (dataItem) {
+                            var phone = dataItem.phoneNumber.toString();
+                            return "(" + phone.substr(0, 3) + ") " + phone.substr(3, 3) + "-" + phone.substr(6, 4);
+                        }
+                    },
+                    {
+                        field: "city",
+                        title: "City",
+                        template: function (dataItem) {
+                            return dataItem.city === "Mississauga" ?
+                                "<span class='badge badge-primary'>" + dataItem.city + "</span>" : dataItem.city;
+                        }
+                    },
+                    { field: "salary", title: "Salary", format: "{0:c2}" },
+                    {
+                        field: "country",
+                        title: "Country",
+                        template: function (dataItem) {
+                            return dataItem.country === "Canada" ?
+                                "<span style='color: red;'>" + dataItem.country + "</span>" : dataItem.country;
+                        }
+                    }
+                ]
+            });
+        });
+
+    </script>
+}
+<div id="mississauga-count" class="alert alert-info" style="margin-top: 3rem" role="alert"></div>
+<div style="margin-top: 3rem" id="grid"></div>
