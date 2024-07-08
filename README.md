@@ -16,7 +16,7 @@ This project demonstrates the implementation of two main tasks:
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/yourusername/yourrepository.git
+   git clone git@github.com:cub3n/ProjectTest.git
    cd yourrepository
 
 
