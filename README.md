@@ -49,3 +49,4 @@ This project demonstrates the implementation of two main tasks:
 
 For any questions or feedback, please contact naviuseless@gmail.com.
 
+Alexis Labanino
